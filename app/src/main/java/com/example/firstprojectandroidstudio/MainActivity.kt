@@ -29,7 +29,15 @@ class MainActivity : AppCompatActivity() {
         val playerDataSource = FakePlayerDataSource()
         val playerRepository: PlayerRepository = PlayerRepositoryImpl(playerDataSource)
         val getPlayersUseCase = GetPlayersUseCase(playerRepository)
-        val playerViewModel = PlayerViewModel(getPlayersUseCase)
+
+        val playerViewModel =
+            PlayerViewModel(
+                GetPlayersUseCase(
+                    PlayerRepositoryImpl
+                        (FakePlayerDataSource())
+                )
+            )
+
         val playersList = playerViewModel.getPlayers()
 
         val textView = findViewById<TextView>(R.id.text_test)
