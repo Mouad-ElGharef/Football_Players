@@ -12,6 +12,7 @@ import com.example.firstprojectandroidstudio.data.source.FakePlayerDataSource
 import com.example.firstprojectandroidstudio.domain.model.Player
 import com.example.firstprojectandroidstudio.domain.repository.PlayerRepository
 import com.example.firstprojectandroidstudio.domain.usecase.GetPlayersUseCase
+import com.example.firstprojectandroidstudio.presentation.PlayerViewModel
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         val playerDataSource = FakePlayerDataSource()
         val playerRepository: PlayerRepository = PlayerRepositoryImpl(playerDataSource)
         val getPlayersUseCase = GetPlayersUseCase(playerRepository)
+        val playerViewModel = PlayerViewModel(getPlayersUseCase)
 
         val playersList = getPlayersUseCase.execute()
 
