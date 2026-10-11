@@ -30,8 +30,7 @@ class MainActivity : AppCompatActivity() {
         val playerRepository: PlayerRepository = PlayerRepositoryImpl(playerDataSource)
         val getPlayersUseCase = GetPlayersUseCase(playerRepository)
         val playerViewModel = PlayerViewModel(getPlayersUseCase)
-
-        val playersList = getPlayersUseCase.execute()
+        val playersList = playerViewModel.getPlayers()
 
         val textView = findViewById<TextView>(R.id.text_test)
         textView.text = playersList.toString()
