@@ -26,10 +26,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val playerDataSource = FakePlayerDataSource()
-        val playerRepository: PlayerRepository = PlayerRepositoryImpl(playerDataSource)
-        val getPlayersUseCase = GetPlayersUseCase(playerRepository)
-
         val playerViewModel =
             PlayerViewModel(
                 GetPlayersUseCase(
